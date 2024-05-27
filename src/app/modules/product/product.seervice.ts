@@ -6,6 +6,12 @@ const createProductInDB = async (productData:TProduct)=>{
     return result
 }
 
+const getProductFromDB = async ()=>{
+    const result = ProductModel.find();
+    return result;
+}
+
 export default {
-    createProductInDB
+    createProductInDB,
+    getProductFromDB
 }
