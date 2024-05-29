@@ -118,6 +118,15 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
+
+//=====================Partial Update a Product=====================
+// const partiallyProductUpdate = async(req:Request, res:Response)=>{
+//   try{
+//     const 
+//   }
+  
+// }
+
 export const ProductController = {
   createProduct,
   getProducts,
