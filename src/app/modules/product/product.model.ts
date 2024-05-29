@@ -75,5 +75,6 @@ const productSchema = new Schema<TProduct>({
     },
   },
 });
-
+productSchema.index({name:"text", description:"text", tags:"text", category:"text"})
 export const ProductModel = model<TProduct>("product", productSchema);
+

@@ -7,9 +7,21 @@ const createProductInDB = async (productData:TProduct)=>{
     return result
 }
 
-const getProductFromDB = async ()=>{
-    const result = ProductModel.find();
-    return result;
+const getProductFromDB = async (keyword:string)=>{
+
+    if(keyword){
+        const result = await ProductModel.find({
+            $text: {$search: keyword}
+           
+        })
+       
+        return result;
+      
+    }
+    else{
+        const result = await ProductModel.find();
+        return result;
+    }
 }
 
 const getProductByIdFromDB = async(id:string)=>{
@@ -22,9 +34,17 @@ const updateProductInDB = async (id: string, data:TProduct)=>{
     return result;
 }
 
+const deleteProductFromDB =  async (id:string)=>{
+    const result = ProductModel.deleteOne({_id: new ObjectId(id)})
+    return result
+}
+
+
 export default {
     createProductInDB,
     getProductFromDB,
     getProductByIdFromDB,
-    updateProductInDB
+    updateProductInDB,
+    deleteProductFromDB,
+  
 }
