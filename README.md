@@ -1,13 +1,11 @@
 <h2><b>Instructions on how to run the application locally<b></h2>
 
 <ul>
-    <li>At fisrt run the local server by the followoing command:</br>
-    npm run start:dev </li></br>
-    <li>Open postman software</li>
+    <li>At first open postman software</li>
     <li>Create a collection with relavent name of the project</li></br>
     <h3>Create a New Product </h3>
     <li>Add a post request under the collection</li>
-    <li>In URL box of postman write the url: https://product-management-server-weld.vercel.app/products</li>
+    <li>In URL box of postman write the url: https://product-management-server-weld.vercel.app/api/products</li>
     <li>In body of postmant insert a data of a porduct like following</li></br>
     <p> 
     {
@@ -69,3 +67,4 @@
  <p>
 
 <ul>
+<h4>Others operation executed by the instruction of assignment requirment</h4>
