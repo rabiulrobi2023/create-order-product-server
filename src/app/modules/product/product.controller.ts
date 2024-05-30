@@ -39,7 +39,10 @@ const getProducts = async (req: Request, res: Response) => {
     if (result && keyword) {
       res.status(200).json({
         success: true,
-        message: `Products matching search term ${keyword} fetched successfully!`,
+        message:
+          result.length > 0
+            ? `Products matching search term ${keyword} fetched successfully!`
+            : "There is no any product for this keyword",
         data: result,
       });
     } else {
@@ -71,7 +74,7 @@ const getProductById = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).json({
       success: false,
-      message: error.message || "Data fetch fail",
+      message: "There is no any product for this id",
       data: error,
     });
   }
@@ -82,12 +85,37 @@ const productUpdate = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const data = req.body;
-    const result = await productServices.updateProductInDB(id, data);
-    res.status(200).json({
-      success: true,
-      message: "Product updated successfully!",
-      data: result,
-    });
+
+    const { error, value } = JoiProductValidationSchema.validate(data);
+    
+    if (error) {
+      res.status(200).json({
+        success: false,
+        message: "Input type problem",
+      });
+    } else {
+   
+      const result = await productServices.updateProductInDB(id, value);
+      const modifiedData = await productServices.getProductByIdFromDB(id)
+   
+    if(result.modifiedCount){
+      res.status(200).json({
+        success: true,
+        message: "Product updated successfully!",
+        data: modifiedData,
+      });
+    }
+    else{
+      res.status(500).json({
+        success: true,
+        message: "Product updated fail",
+        data: modifiedData,
+      });
+
+    }
+      
+    }
+
   } catch (error: any) {
     res.status(500).json({
       success: false,
@@ -117,15 +145,6 @@ const deleteProduct = async (req: Request, res: Response) => {
     });
   }
 };
-
-
-//=====================Partial Update a Product=====================
-// const partiallyProductUpdate = async(req:Request, res:Response)=>{
-//   try{
-//     const 
-//   }
-  
-// }
 
 export const ProductController = {
   createProduct,
