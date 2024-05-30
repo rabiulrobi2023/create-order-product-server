@@ -1,8 +1,8 @@
-<h2><b>Instructions on how to run the application locally<b></h2>
+<h2>Instructions on how to run the application locally</h2>
 
 <ul>
     <li>At first open postman software</li>
-    <li>Create a collection with relavent name of the project</li></br>
+    <li>Create a collection with relavent name of the project</li>
     <h3>Create a New Product </h3>
     <li>Add a post request under the collection</li>
     <li>In URL box of postman write the url: https://product-management-server-weld.vercel.app/api/products</li>
