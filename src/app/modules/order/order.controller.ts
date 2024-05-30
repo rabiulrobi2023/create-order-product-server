@@ -25,10 +25,10 @@ const createOrder = async (req: Request, res: Response) => {
     
 
       if (remaining>=0) {
-        const result = await orderServices.createOrderInDB(value);
+        const result:any = await orderServices.createOrderInDB(value);
         res.status(200).json({
           success: true,
-          message: "Order created successfully!",
+          message: result.length>0? "Order created successfully!":"There is no any order",
           data: result,
         });
        
