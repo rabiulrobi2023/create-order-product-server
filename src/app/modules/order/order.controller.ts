@@ -28,7 +28,7 @@ const createOrder = async (req: Request, res: Response) => {
         const result:any = await orderServices.createOrderInDB(value);
         res.status(200).json({
           success: true,
-          message: result.length>0? "Order created successfully!":"There is no any order",
+          message: result? "Order created successfully!":"There is no any product",
           data: result,
         });
        

@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { TProduct } from "./product.interface";
+import { TProduct, TVariant } from "./product.interface";
 
 // const colorVariantSchema = new Schema<TColorVariant>({
 //   type: {
@@ -12,27 +12,15 @@ import { TProduct } from "./product.interface";
 //   },
 // });
 
-const variantSchema = new Schema(
+const variantSchema = new Schema<TVariant>(
   {
     type: {
       type: String,
-      enum: ["color", "size"],
       required: true,
     },
     value: {
       type: String,
       required: true,
-      enum: [
-        "Red",
-        "Black",
-        "White",
-        "Blue",
-        "Purple",
-        "Silver",
-        "S",
-        "M",
-        "L",
-      ],
     },
   },
   { _id: false }
@@ -75,6 +63,10 @@ const productSchema = new Schema<TProduct>({
     },
   },
 });
-productSchema.index({name:"text", description:"text", tags:"text", category:"text"})
+productSchema.index({
+  name: "text",
+  description: "text",
+  tags: "text",
+  category: "text",
+});
 export const ProductModel = model<TProduct>("product", productSchema);
-

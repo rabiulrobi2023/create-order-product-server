@@ -1,16 +1,21 @@
 import Joi from "joi";
 
 // Define a Joi schema for variants
+// const variantJoiSchema = Joi.object({
+//   type: Joi.string().valid("color", "size").required(),
+//   value: Joi.alternatives().conditional("type", {
+//     is: "color",
+//     then: Joi.string()
+//       .valid("Red", "Black", "White", "Blue", "Purple", "Silver")
+//       .required(),
+//     otherwise: Joi.string().valid("S", "M", "L").required(),
+//   }),
+// });
+
 const variantJoiSchema = Joi.object({
-  type: Joi.string().valid("color", "size").required(),
-  value: Joi.alternatives().conditional("type", {
-    is: "color",
-    then: Joi.string()
-      .valid("Red", "Black", "White", "Blue", "Purple", "Silver")
-      .required(),
-    otherwise: Joi.string().valid("S", "M", "L").required(),
-  }),
-});
+  type: Joi.string().required(),
+  value: Joi.string().required()
+})
 
 // Define a Joi schema for the product
 const JoiProductValidationSchema = Joi.object({
